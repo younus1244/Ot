@@ -88,19 +88,14 @@
 
       // Check if the order number exists in the simulated data
       if (orderData.hasOwnProperty(orderNumber)) {
-        // Simulate updating the order status
-        updateOrderStatus(orderNumber, orderData[orderNumber]);
+        // Display the order status
+        var statusElement = document.getElementById("order-status");
+        statusElement.textContent = "Order Status: " + orderData[orderNumber];
+        statusElement.classList.remove("invalid");
       } else {
         // Display a message for invalid order numbers
         displayInvalidOrder();
       }
-    }
-
-    function updateOrderStatus(orderNumber, status) {
-      // Display the order status
-      var statusElement = document.getElementById("order-status");
-      statusElement.textContent = "Order Status: " + status;
-      statusElement.classList.remove("invalid");
     }
 
     function displayInvalidOrder() {
@@ -111,5 +106,4 @@
     }
   </script>
 </body>
-  </html>
-  
+</html>
