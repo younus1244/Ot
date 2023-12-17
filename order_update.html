@@ -60,4 +60,66 @@
 
     #update-status {
       margin-top: 20px;
-      font-size: 18
+      font-size: 18px;
+      font-weight: bold;
+      color: #2ecc71;
+    }
+
+    #update-status.invalid {
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <div id="update-container">
+    <label for="order-input">Enter Order Number:</label>
+    <input type="text" id="order-input" placeholder="Order Number">
+    <label for="status-input">Enter New Status:</label>
+    <input type="text" id="status-input" placeholder="New Status">
+    <button id="update-button" onclick="updateOrderStatus()">Update Status</button>
+    <p id="update-status"></p>
+    
+    <!-- Navigation link back to the order tracking page -->
+    <p><a href="index.html">Back to Order Tracking</a></p>
+  </div>
+
+  <script>
+    // Simulated order data
+    var orderData = {
+      "12345": "Shipped",
+      "67890": "Processing",
+      // Add more order numbers and statuses as needed
+    };
+
+    function updateOrderStatus() {
+      // Get the order number and new status from the input fields
+      var orderNumber = document.getElementById("order-input").value;
+      var newStatus = document.getElementById("status-input").value;
+
+      // Check if the order number exists in the simulated data
+      if (orderData.hasOwnProperty(orderNumber)) {
+        // Simulate updating the order status
+        orderData[orderNumber] = newStatus;
+        displayUpdateSuccess();
+      } else {
+        // Display a message for invalid order numbers
+        displayInvalidOrder();
+      }
+    }
+
+    function displayUpdateSuccess() {
+      // Display a success message for status update
+      var statusElement = document.getElementById("update-status");
+      statusElement.textContent = "Order Status Updated Successfully";
+      statusElement.classList.remove("invalid");
+    }
+
+    function displayInvalidOrder() {
+      // Display a message for invalid order numbers
+      var statusElement = document.getElementById("update-status");
+      statusElement.textContent = "Invalid Order Number";
+      statusElement.classList.add("invalid");
+    }
+  </script>
+</body>
+</html>
