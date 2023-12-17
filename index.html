@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Tracking System</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #tracking-container {
+      text-align: center;
+      padding: 20px;
+      border: 2px solid #3498db;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #order-input {
+      padding: 8px;
+      font-size: 16px;
+      margin: 10px 0;
+      width: 60%;
+    }
+
+    #track-button {
+      background-color: #3498db;
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    #track-button:hover {
+      background-color: #2980b9;
+    }
+
+    #order-status {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2ecc71;
+    }
+
+    #order-status.invalid {
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <div id="tracking-container">
+    <label for="order-input">Enter Order Number:</label>
+    <input type="text" id="order-input" placeholder="Order Number">
+    <button id="track-button" onclick="trackOrder()">Track Order</button>
+    <p id="order-status"></p>
+    
+    <!-- Navigation link to the status update page -->
+    <p><a href="order_update.html">Update Order Status</a></p>
+  </div>
+
+  <script>
+    // Simulated order data
+    var orderData = {
+      "12345": "Shipped",
+      "67890": "Processing",
+      // Add more order numbers and statuses as needed
+    };
+
+    function trackOrder() {
+      // Get the order number from the input field
+      var orderNumber = document.getElementById("order-input").value;
+
+      // Check if the order number exists in the simulated data
+      if (orderData.hasOwnProperty(orderNumber)) {
+        // Simulate updating the order status
+        updateOrderStatus(orderNumber, orderData[orderNumber]);
+      } else {
+        // Display a message for invalid order numbers
+        displayInvalidOrder();
+      }
+    }
+
+    function updateOrderStatus(orderNumber, status) {
+      // Display the order status
+      var statusElement = document.getElementById("order-status");
+      statusElement.textContent = "Order Status: " + status;
+      statusElement.classList.remove("invalid");
+    }
+
+    function displayInvalidOrder() {
+      // Display a message for invalid order numbers
+      var statusElement = document.getElementById("order-status");
+      statusElement.textContent = "Invalid Order Number";
+      statusElement.classList.add("invalid");
+    }
+  </script>
+</body>
+  </html>
+  
